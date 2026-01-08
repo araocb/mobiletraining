@@ -12,11 +12,23 @@ Typically, installing daemonized software (programs meant to be server-processes
 
 `systemd` will, from then onwards, start and monitor the process. The same semantics apply to Sync Gateway when you run it on a Virtual Machine. Sync Gateway will then also have its own home directory where you will find the configuration JSON file to edit.
 
-However, in this task, we will work with containers as doing the above will be too time-consuming.
+However, in this task, we will work with containers as doing the above will be too time-consuming. But a few points to note:
 
-Configuring Sync Gatewy on Docker **differs** from doing it on Virtual Machines:
+* Sync Gateway will run successfully only if it has been configured beforehand.
 
-* Containers do not use `systemd` as their init system. For the container, the Sync Gateway process itself is the container. If this process dies, the container will be marked by Docker as 'crashed/killed'.
+    * On startup, Sync Gateway will typically try looking for its configuration file. If the file doesn't exist in the path it expected, it will exit. 
+    
+    * If the configuration file exists in hte expected path, but it isn't JSON or doesn't match the bootstrap spec, it will exit.
+
+    * If the configuration file is valid JSON and matches the bootstrap spec, it will try contacting Couchbase Server at the specified connection string. It will attempt to connect, but if it fails repeatedly, Sync Gateway will exit again.
+
+* Configuring Sync Gateway on Docker **differs** from doing it on Virtual Machines.
+
+* Containers do not use `systemd` as their init system. For the container, the Sync Gateway process itself is the container. If this process dies, the container will be marked by Docker as 'crashed/killed' by the Docker daemon.
+
+* On Virtual Machines, programs will log all errors and other information into `syslog` (used to be `/var/log/messages` earlier). From `systemd` onwards, `journalctl` became the standard command used to access these logs. 
+
+* But for containers, any logging from the containerized-program can be sent to the log stores maintained by Docker. These can be accessed using the `docker logs` command.
 
 ---
 
@@ -103,4 +115,4 @@ docker run -d -p 4984-4985:4984-4985 --name mobile-sgw -v ./conf:<config-file-pa
 curl 127.0.0.1:4984
 ```
 
-
+But using curl will get tedious. We will install Postman for the next tasks.
