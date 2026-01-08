@@ -24,7 +24,7 @@ However, in this task, we will work with containers as doing the above will be t
 
 * Configuring Sync Gateway on Docker **differs** from doing it on Virtual Machines.
 
-* Containers do not use `systemd` as their init system. For the container, the Sync Gateway process itself is the container. If this process dies, the container will be marked by Docker as 'crashed/killed' by the Docker daemon.
+* Containers do not use `systemd` as their init system. From the container runtime's perspective, the Sync Gateway process itself is the container. If this process dies, the container will be marked by Docker as 'crashed/killed' by the Docker daemon.
 
 * On Virtual Machines, programs will log all errors and other information into `syslog` (used to be `/var/log/messages` earlier). From `systemd` onwards, `journalctl` became the standard command used to access these logs. 
 
@@ -76,9 +76,9 @@ The reason behind this failure is because in Docker containers, you have a chick
 
 Therefore, we need to edit the configuration even before the container starts running. This is possible if you mount the config file from your system on the container as a shared file/volume.
 
-Let us start writing a configuration file for Sync Gateway. 
-
 **Challenge**: Try to get the default configuration on the Sync Gateway docker instance. This is not mandatory to perform.
+
+Let us start writing a configuration file for Sync Gateway. 
 
 8. Create the required configuration file for sync gateway. Save the following json content as a file named `config.json`:
 
