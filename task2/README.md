@@ -2,6 +2,10 @@
 
 Install Postman (if you haven’t already), then import the shared Postman collection into your Postman workspace.
 
+## Background Changes
+
+In Task 1, you created a bucket on your Couchbase Server instance called `mobilebucket`. Create a scope for this called `testscope`, and under this scope, create `testcollection`.
+
 ### Task
 
 1. Check that Sync Gateway is running by calling the **SGW Working Endpoint** request in the shared Postman collection.
@@ -58,7 +62,7 @@ Install Postman (if you haven’t already), then import the shared Postman colle
 
     Now that we are done with the DB configuration, you can proceed with the next steps!
 
-3. Create a document on the keyspace `mobiletraining`.`testscope`.`testcollection` using Sync Gateway
+3. Create a document on the keyspace `mobiletraining`.`testscope`.`testcollection` using Sync Gateway. 
 
 4. Get the document you created in the previous step using Sync Gateway endpoints.
 
