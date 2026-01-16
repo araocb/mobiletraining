@@ -1,0 +1,682 @@
+{
+	"info": {
+		"_postman_id": "58c55217-c8f5-46ce-a46f-75eb377f451e",
+		"name": "SGW Intern Training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41186393"
+	},
+	"item": [
+		{
+			"name": "Get Databases",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4985/_all_dbs",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"_all_dbs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Database",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bucket\": \"mobilebucket\",\n  \"num_index_replicas\": 0,\n  \"name\": \"mydb\",\n  \"scopes\": {\n    \"testscope\": {\n        \"collections\": {\n            \"testcollection\": {}\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Database",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bucket\": \"mobilebucket\",\n  \"name\": \"mydb\",\n  \"num_index_replicas\":0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/db1/_config",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"db1",
+						"_config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Document",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/e89f6109b73daca4a88ff0813010ae8b",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						"e89f6109b73daca4a88ff0813010ae8b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Document Public",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "sgpassword1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sgwuser1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4984/mydb.testscope.testcollection/e89f6109b73daca4a88ff0813010ae8b",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4984",
+					"path": [
+						"mydb.testscope.testcollection",
+						"e89f6109b73daca4a88ff0813010ae8b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Document",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"jeans\",\n  \"type\": \"clothes\",\n  \"id\": 100,\n  \"price\": 299,\n  \"qty\": 60,\n  \"store\": \"dmartA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Document",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"61de22edc5ec330eb313d9941a85c3fc\",\n  \"_cv\": \"188a554dbcf50000@h6BH4pxgX6jOYA8+5ql1sw\",\n  \"key1\": \"value2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/61de22edc5ec330eb313d9941a85c3fc",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						"61de22edc5ec330eb313d9941a85c3fc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Document",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/61de22edc5ec330eb313d9941a85c3fc",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						"61de22edc5ec330eb313d9941a85c3fc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SGW Working",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4984",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4984"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DB Offline",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"1\",\n  \"key1\": \"value1\",\n  \"key2\": \"value2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_offline",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_offline"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DB Online",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"1\",\n  \"key1\": \"value1\",\n  \"key2\": \"value2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_online",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_online"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resync",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"1\",\n  \"key1\": \"value1\",\n  \"key2\": \"value2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_resync?action=start",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_resync"
+					],
+					"query": [
+						{
+							"key": "action",
+							"value": "start"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resync Status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"_id\": \"1\",\n  \"key1\": \"value1\",\n  \"key2\": \"value2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_resync",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_resync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Role",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n          \"name\": \"stdrole\",\n          \"collection_access\": {\n             \"testscope\": {\n                \"testcollection\": {\n                    \"admin_channels\": [\"newrolechannel\"] \n                 }\n             }\n           }\n      }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://3.111.30.221:4985/mydb/_role/stdrole",
+					"protocol": "http",
+					"host": [
+						"3",
+						"111",
+						"30",
+						"221"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_role",
+						"stdrole"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get DB Configuration",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_config",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Database",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}}:4985/mydb/",
+					"protocol": "http",
+					"host": [
+						"{{host}}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add SGW User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"sgwuser1\", \n    \"password\": \"sgpassword1\",\n    \"collection_access\": {\n    \"testscope\": {\n        \"testcollection\": {\n        \"admin_channels\": [\"clothes\"] \n                }\n            }\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_user/sgwuser1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_user",
+						"sgwuser1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add SGW User Roles",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"sgwuser1\", \n    \"password\": \"sgpassword1\",\n    \"admin_roles\": [\n        \"stdrole\"\n        ],\n    \"collection_access\": {\n    \"testscope\": {\n        \"testcollection\": {\n                }\n            }\n        }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_user/sgwuser1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_user",
+						"sgwuser1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sync Function",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/_config/sync",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						"_config",
+						"sync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sync Function",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "function sync(doc, oldDoc) {\n\n  if (doc.type){\n    channel(doc.type)\n  }\n\n  // Fallback channel for all documents\n  channel(\"public\");\n}\n",
+					"options": {
+						"raw": {
+							"language": "javascript"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/_config/sync",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						"_config",
+						"sync"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"2\": [\"*\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:4985/mydb.testscope.testcollection/_purge",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb.testscope.testcollection",
+						"_purge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete SGW User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_user/sgwuser1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_user",
+						"sgwuser1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:4985/mydb/_user/sgwuser1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "4985",
+					"path": [
+						"mydb",
+						"_user",
+						"sgwuser1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "password",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "Administrator",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "13.232.243.58"
+		}
+	]
+}
